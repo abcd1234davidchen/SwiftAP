@@ -7,12 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
-    init() {
-            setupTabBarAppearance()
-        }
-    
+struct ContentView: View {    
     var body: some View {
         TabView{
             HomePage().tabItem
@@ -24,18 +19,6 @@ struct ContentView: View {
         }
     }
     
-    private func setupTabBarAppearance() {
-            let appearance = UITabBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-            appearance.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.3)
-
-            UITabBar.appearance().standardAppearance = appearance
-            
-            if #available(iOS 15.0, *) {
-                UITabBar.appearance().scrollEdgeAppearance = appearance
-            }
-        }
 }
 
 #Preview {

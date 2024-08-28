@@ -34,7 +34,7 @@ struct CourseView: View {
             Spacer()
         }
         .frame(width: 150)
-        .background(Color.gray)
+        .background(isToday && course.Time.contains(getCurrentTimeCode()!) ? Color.blue : Color.gray)
         .clipShape(RoundedRectangle(cornerRadius: 20.0))
         
     }
@@ -46,7 +46,7 @@ struct DayView: View{
     
     var body: some View{
         VStack{
-            Text(day).font(.title2.bold()).minimumScaleFactor(0.3).padding(.horizontal,6)
+            Text(day).font(.title2.bold()).minimumScaleFactor(0.3).padding(.horizontal,10)
                 .background(day == dayInWeek() ? Color.red : Color.clear).clipShape(Capsule()).foregroundStyle(day==dayInWeek() ? Color.white:Color.primary)
             ForEach(courses, id: \.name) { course in
                 CourseView(course: course, isToday: day==dayInWeek())

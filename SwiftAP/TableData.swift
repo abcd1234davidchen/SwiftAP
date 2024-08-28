@@ -33,7 +33,7 @@ func getCurrentTimeCode() -> String? {
     let dateFormatter: DateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH"
     let hour: Int = Int(dateFormatter.string(from: date))!
-    let timeCode: String = timeToCode[hour] ?? "Off Class"
+    let timeCode: String = timeToCode[hour] ?? "no such"
     return timeCode
 }
 
