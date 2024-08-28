@@ -10,10 +10,12 @@ import SwiftUI
 struct Course{
     var name : String
     var additionalData : String
+    var Time: String
 }
 
 struct CourseView: View {
     var course : Course
+    var isToday : Bool
     
     var body: some View{
         VStack {
@@ -26,6 +28,9 @@ struct CourseView: View {
             Text(course.additionalData)
                 .font(.subheadline)
                 .minimumScaleFactor(0.3)
+            Text(convertedTime(code: course.Time) ?? "Undefined")
+                .font(.caption)
+                .padding([.top],3)
             Spacer()
         }
         .frame(width: 150)
@@ -41,9 +46,10 @@ struct DayView: View{
     
     var body: some View{
         VStack{
-            Text(day).font(.title2.bold()).minimumScaleFactor(0.3)
+            Text(day).font(.title2.bold()).minimumScaleFactor(0.3).padding(.horizontal,6)
+                .background(day == dayInWeek() ? Color.red : Color.clear).clipShape(Capsule()).foregroundStyle(day==dayInWeek() ? Color.white:Color.primary)
             ForEach(courses, id: \.name) { course in
-                CourseView(course: course)
+                CourseView(course: course, isToday: day==dayInWeek())
             }.padding(3)
         }
     }
