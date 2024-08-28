@@ -9,20 +9,34 @@ import SwiftUI
 
 struct TablePage: View {
     var body: some View {
-        NavigationStack(){
-            HStack{
-                DayView(day: "Mon")
-                DayView(day: "Tue")
+        NavigationStack {
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(daysOfWeek, id: \.self) { day in
+                        if let courses = coursesByDay[day],!courses.isEmpty{
+                            DayView(day:day,courses:courses)
+                        }
+                    }
+                    //Text("No score yet")
+                }
+                .padding()
+        
             }
-            
             .navigationTitle("Table")
-            
             .toolbar{
                 ToolbarItem(){
                     Button(action: {}, label: {
                         Label(
-                            title: { Text("Label") },
+                            title: { Text("Logout") },
                             icon: { Image(systemName: "rectangle.portrait.and.arrow.forward") }
+                        )
+                    })
+                };
+                ToolbarItem(){
+                    Button(action: {}, label: {
+                        Label(
+                            title: { Text("Semsester") },
+                            icon: { Image(systemName: "menucard") }
                         )
                     })
                 }
@@ -35,35 +49,3 @@ struct TablePage: View {
     TablePage()
 }
 
-struct CourseView: View {
-    var name: String
-    var additonal: String
-    
-    var body: some View{
-        VStack {
-            Text(name)
-                .font(.title)
-                .padding(5)
-                .lineLimit(1)
-            Text(additonal)
-                .font(.subheadline)
-                .padding(5)
-                .lineLimit(1)
-        }
-        .frame(width: 100, height: 100)
-        .background(Color.gray)
-        .clipShape(RoundedRectangle(cornerRadius: 20.0))
-        
-    }
-}
-
-struct DayView: View{
-    var day: String
-    
-    var body: some View{
-        VStack{
-            Text(day).font(.title.bold()).padding([.all],5).minimumScaleFactor(0.5).lineLimit(1)
-            CourseView(name: "Test",additonal: "What")
-        }
-    }
-}
