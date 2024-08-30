@@ -34,7 +34,7 @@ struct CourseView: View {
             Spacer()
         }
         .frame(width: 150)
-        .background(isToday && course.Time.contains(getCurrentTimeCode()!) ? Color.blue : Color.gray)
+        .background(isToday && course.Time.contains(getCurrentTimeCode()!) ? Color.accentColor : Color.secondary)
         .clipShape(RoundedRectangle(cornerRadius: 20.0))
         
     }

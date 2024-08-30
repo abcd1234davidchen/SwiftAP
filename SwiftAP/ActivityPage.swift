@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomePage: View {
+struct ActivityPage: View {
     var body: some View {
         NavigationStack(){
             ZStack(content: {
@@ -19,5 +19,5 @@ struct HomePage: View {
 }
 
 #Preview {
-    HomePage()
+    ActivityPage()
 }
