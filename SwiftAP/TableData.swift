@@ -7,7 +7,7 @@
 import SwiftUI
 import Foundation
 
-let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 let timeCode = [
     1: "07:00", 2: "08:00", 3: "09:00", 4: "10:00", 5: "11:00",
@@ -56,8 +56,7 @@ func dayInWeek() -> String? {
     let dateFormatter: DateFormatter = DateFormatter()
     dateFormatter.dateFormat = "e" // 使用 "E" 獲取縮寫，"EEEE" 獲取全名
     var day: String = dateFormatter.string(from: date)
-    day=daysOfWeek[Int(day)!-2]
-    return day
+    return daysOfWeek[Int(day)!-1]
 }
 
 let coursesByDay: [String: [Course]] = [
