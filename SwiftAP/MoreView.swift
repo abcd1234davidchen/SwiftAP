@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MorePage: View {
+    
+    
     var body: some View {
         NavigationStack(){
             ZStack(content: {
