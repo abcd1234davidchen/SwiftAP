@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Course{
+struct Course: Hashable{
     var name : String
     var additionalData : String
     var Time: String
@@ -46,7 +46,7 @@ struct DayView: View{
     
     var body: some View{
         VStack{
-            var istoday: Bool = day==dayInWeek()
+            let istoday: Bool = day==dayInWeek()
             Text(day).font(.title2.bold()).minimumScaleFactor(0.3).padding(.horizontal,10)
                 .background(istoday ? Color.red : Color.clear).clipShape(Capsule()).foregroundStyle(istoday ? Color.white:Color.primary)
             ForEach(courses, id: \.name) { course in

@@ -55,7 +55,7 @@ func dayInWeek() -> String? {
     let date: Date = Date()
     let dateFormatter: DateFormatter = DateFormatter()
     dateFormatter.dateFormat = "e" // 使用 "E" 獲取縮寫，"EEEE" 獲取全名
-    var day: String = dateFormatter.string(from: date)
+    let day: String = dateFormatter.string(from: date)
     return daysOfWeek[Int(day)!-1]
 }
 

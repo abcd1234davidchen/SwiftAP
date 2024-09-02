@@ -10,10 +10,19 @@ import SwiftUI
 struct ActivityPage: View {
     var body: some View {
         NavigationStack(){
-            ZStack(content: {
-                Text("What")
-            })
-            .navigationTitle("Activity")
+            VStack{
+                let today = coursesByDay[dayInWeek()!]
+                if ((today?.isEmpty) == nil){
+                    Text("You're free now!\n Go have a life").fontWeight(.semibold).multilineTextAlignment(.center).font(.title2)
+                }
+                else{
+                    ForEach(today!,id: \.self){oneCourse in
+                        if oneCourse.Time.contains(getCurrentTimeCode()!){
+                            Text(oneCourse.name)
+                        }
+                    }
+                }
+            }.navigationTitle("Activity")
         }
     }
 }
