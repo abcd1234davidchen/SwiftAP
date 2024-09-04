@@ -7,11 +7,16 @@
 
 import SwiftUI
 
-struct ContentView: View {    
+struct ContentView: View {
+
+    @StateObject private var sharedData = SharedData()
+    
     var body: some View {
         TabView{
             TablePage().tabItem{Label("You",systemImage:"person.crop.circle")}
+                .environmentObject(sharedData)
             ActivityPage().tabItem{Label("Activity",systemImage:"rectangle.stack")}
+                .environmentObject(sharedData)
             MorePage().tabItem{Label("More",systemImage:"square.grid.2x2.fill")}
         }
     }

@@ -21,5 +21,5 @@ struct MorePage: View {
 }
 
 #Preview {
-    MorePage()
+    ContentView()
 }

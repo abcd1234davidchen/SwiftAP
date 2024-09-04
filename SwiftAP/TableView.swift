@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TablePage: View {
+    @StateObject private var viewModel = CourseViewModel()
+    @EnvironmentObject var sharedData: SharedData
+    
     @State var login : Bool = true
     @State var username : String = ""
     @State var password : String = ""
@@ -21,7 +24,7 @@ struct TablePage: View {
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(daysOfWeek, id: \.self) { day in
-                        if let courses = coursesByDay[day],!courses.isEmpty{
+                        if let courses = sharedData.coursesByDay[day],!courses.isEmpty{
                             DayView(day:day,courses:courses)
                         }
                     }
@@ -30,7 +33,7 @@ struct TablePage: View {
                 .padding()
         
             }
-            .navigationTitle("You")
+            .navigationTitle("Hi")
             .toolbar{
                 ToolbarItem(){
                     Button(action: {login = false}, label: {
@@ -47,6 +50,13 @@ struct TablePage: View {
                             icon: { Image(systemName: "menucard") }
                         )
                     })
+                }
+            }.onAppear {
+                if !username.isEmpty {
+                    viewModel.getCourseDate(username: username, sharedData: sharedData)
+                }
+                else{
+                    viewModel.getCourseDate(username: "B123245006", sharedData: sharedData)
                 }
             }
         }
@@ -65,6 +75,6 @@ struct TablePage: View {
     
 }
 #Preview {
-    TablePage()
+    ContentView()
 }
 

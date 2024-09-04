@@ -59,28 +59,19 @@ func dayInWeek() -> String? {
     return daysOfWeek[Int(day)!-1]
 }
 
-let coursesByDay: [String: [Course]] = [
-    "Mon": [
-        Course(name: "Math", additionalData: "Room 101",Time: "234"),
-        Course(name: "Science", additionalData: "Lab 202",Time: "567")
-    ],
-    "Tue": [
-        Course(name: "History", additionalData: "Room 303",Time: "234"),
-        Course(name: "Art", additionalData: "Studio 404",Time: "567")
-    ],
-    "Wed": [
-        Course(name: "Physics", additionalData: "Room 105",Time: "234"),
-        Course(name: "Chemistry", additionalData: "Lab 205",Time: "567")
-    ],
-    "Thu": [
-        Course(name: "English", additionalData: "Room 206",Time: "234"),
-        Course(name: "C Language", additionalData: "Lab 306",Time: "567")
-    ],
-    "Fri": [
-        Course(name: "Computer Science", additionalData: "Room 407",Time: "234"),
-        Course(name: "Music", additionalData: "Auditorium",Time: "B"),
-        Course(name: "Discrete Math", additionalData: "Class",Time: "567")
-    ]
-]
-
-#Preview {TablePage()}
+func removeEnglishSuffix(from input: String) -> String {
+    // Regular expression pattern to match any English characters and spaces at the end of the string
+    let pattern = "[a-zA-Z :&/（]+$"
+    
+    var modifiedString = input.dropLast(1)
+    
+    // Loop to keep removing the English suffix until there's no more match
+    while let range = modifiedString.range(of: pattern, options: .regularExpression) {
+        modifiedString.removeSubrange(range)
+    }
+    
+    return String(modifiedString)
+}
+#Preview {
+    ContentView()
+}
