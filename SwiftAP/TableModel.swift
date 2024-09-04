@@ -11,8 +11,8 @@ let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 let timeCode = [
     1: "07:00", 2: "08:00", 3: "09:00", 4: "10:00", 5: "11:00",
-    6: "12:00", 7: "01:00", 8: "02:00", 9: "03:00", 10: "04:00",
-    11: "05:00", 12: "06:00"
+    6: "12:00", 7: "13:00", 8: "14:00", 9: "15:00", 10: "16:00",
+    11: "17:00", 12: "18:00"
 ]
 
 let codeMapping: [Character: Int] = [
@@ -48,7 +48,7 @@ func convertedTime(code: String) -> String? {
           let endTime = timeCode[secondIndex] else {
         return nil
     }
-    return startTime + "~" + endTime
+    return startTime + " - " + endTime
 }
 
 func dayInWeek() -> String? {
@@ -61,7 +61,7 @@ func dayInWeek() -> String? {
 
 func removeEnglishSuffix(from input: String) -> String {
     // Regular expression pattern to match any English characters and spaces at the end of the string
-    let pattern = "[a-zA-Z :&/（]+$"
+    let pattern = "[a-zA-Z :&/（,：＆]+$"
     
     var modifiedString = input.dropLast(1)
     

@@ -23,7 +23,7 @@ struct CourseView: View {
             Spacer()
             Text(course.name)
                 .font(.title)
-                .padding(5)
+                .padding([.horizontal],5)
                 .minimumScaleFactor(0.3)
                 .multilineTextAlignment(.center)
             Text(course.additionalData)
@@ -31,7 +31,8 @@ struct CourseView: View {
                 .minimumScaleFactor(0.3)
             Text(convertedTime(code: course.Time) ?? "Undefined")
                 .font(.subheadline)
-                .padding([.top],3)
+                .minimumScaleFactor(0.3)
+                //.padding([.top],3)
             Spacer()
         }
         .frame(width: 165)
