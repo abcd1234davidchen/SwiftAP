@@ -34,6 +34,7 @@ struct TablePage: View {
         
             }
             .navigationTitle("Hi")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar{
                 ToolbarItem(){
                     Button(action: {login = false}, label: {

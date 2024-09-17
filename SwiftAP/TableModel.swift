@@ -60,12 +60,10 @@ func dayInWeek() -> String? {
 }
 
 func removeEnglishSuffix(from input: String) -> String {
-    // Regular expression pattern to match any English characters and spaces at the end of the string
     let pattern = "[a-zA-Z :&/（,：＆]+$"
     
-    var modifiedString = input.dropLast(1)
+    var modifiedString = input
     
-    // Loop to keep removing the English suffix until there's no more match
     while let range = modifiedString.range(of: pattern, options: .regularExpression) {
         modifiedString.removeSubrange(range)
     }

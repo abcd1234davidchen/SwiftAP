@@ -76,7 +76,9 @@ class CourseViewModel: ObservableObject {
                             if let pruned = additionalData.firstIndex(of: "(") {
                                 additionalData = String(additionalData.suffix(from: pruned))
                                 additionalData.removeFirst()
-                                additionalData.removeLast()
+                                if let prunedBack = additionalData.firstIndex(of: ")"){
+                                    additionalData = String(additionalData.prefix(upTo: prunedBack))
+                                }
                                 additionalData = removeEnglishSuffix(from: additionalData)
                             }
                             
