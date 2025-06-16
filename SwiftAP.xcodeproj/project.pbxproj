@@ -3,21 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4CF6EA83B9493710E9B1A23C /* Pods_SwiftAP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F910A686914DE5BB19802D57 /* Pods_SwiftAP.framework */; };
 		655907D682C54BFBEAB30D08 /* Pods_SwiftAP_SwiftAPUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C589D541195F03AC9BB4EBF9 /* Pods_SwiftAP_SwiftAPUITests.framework */; };
 		B682BDA1A36B7AF3EEA02AF8 /* Pods_SwiftAPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78B58C04A560C40789B439F /* Pods_SwiftAPTests.framework */; };
-		E02CC5D62C7855D800F2EFF0 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02CC5D52C7855D800F2EFF0 /* ActivityView.swift */; };
-		E02CC5D82C786E5B00F2EFF0 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02CC5D72C786E5B00F2EFF0 /* TableView.swift */; };
-		E02CC5DA2C786F7900F2EFF0 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02CC5D92C786F7900F2EFF0 /* MoreView.swift */; };
-		E09B0F722C7F0F5800C75589 /* TableElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09B0F712C7F0F5800C75589 /* TableElements.swift */; };
-		E09B0F742C7F108E00C75589 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09B0F732C7F108E00C75589 /* TableModel.swift */; };
-		E0C2AA722C88E6B100372EA9 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C2AA712C88E6B100372EA9 /* CourseModel.swift */; };
+		E01499952DFDFA7400080EE1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01499942DFDFA7400080EE1 /* MainTabView.swift */; };
 		E0E05FCD2C77EC8F00DF59A3 /* SwiftAPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E05FCC2C77EC8F00DF59A3 /* SwiftAPApp.swift */; };
-		E0E05FCF2C77EC8F00DF59A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E05FCE2C77EC8F00DF59A3 /* ContentView.swift */; };
 		E0E05FD12C77EC9000DF59A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E05FD02C77EC9000DF59A3 /* Assets.xcassets */; };
 		E0E05FD52C77EC9000DF59A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E05FD42C77EC9000DF59A3 /* Preview Assets.xcassets */; };
 		E0E05FDF2C77EC9000DF59A3 /* SwiftAPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E05FDE2C77EC9000DF59A3 /* SwiftAPTests.swift */; };
@@ -50,15 +44,9 @@
 		820309C01DCAF5729F869C43 /* Pods-SwiftAP-SwiftAPUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAP-SwiftAPUITests.release.xcconfig"; path = "Target Support Files/Pods-SwiftAP-SwiftAPUITests/Pods-SwiftAP-SwiftAPUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A78B58C04A560C40789B439F /* Pods_SwiftAPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C589D541195F03AC9BB4EBF9 /* Pods_SwiftAP_SwiftAPUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAP_SwiftAPUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E02CC5D52C7855D800F2EFF0 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		E02CC5D72C786E5B00F2EFF0 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		E02CC5D92C786F7900F2EFF0 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
-		E09B0F712C7F0F5800C75589 /* TableElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableElements.swift; sourceTree = "<group>"; };
-		E09B0F732C7F108E00C75589 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
-		E0C2AA712C88E6B100372EA9 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		E01499942DFDFA7400080EE1 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		E0E05FC92C77EC8F00DF59A3 /* SwiftAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E05FCC2C77EC8F00DF59A3 /* SwiftAPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAPApp.swift; sourceTree = "<group>"; };
-		E0E05FCE2C77EC8F00DF59A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0E05FD02C77EC9000DF59A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0E05FD22C77EC9000DF59A3 /* SwiftAP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftAP.entitlements; sourceTree = "<group>"; };
 		E0E05FD42C77EC9000DF59A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -70,6 +58,11 @@
 		F910A686914DE5BB19802D57 /* Pods_SwiftAP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9683214F6428501036933E /* Pods-SwiftAP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAP.release.xcconfig"; path = "Target Support Files/Pods-SwiftAP/Pods-SwiftAP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E0B62E0D2DFEC1830040D19F /* Authenticate */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Authenticate; sourceTree = "<group>"; };
+		E0B62E0F2DFEC19D0040D19F /* Pages */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Pages; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E0E05FC62C77EC8F00DF59A3 /* Frameworks */ = {
@@ -147,17 +140,13 @@
 		E0E05FCB2C77EC8F00DF59A3 /* SwiftAP */ = {
 			isa = PBXGroup;
 			children = (
-				E0E05FCC2C77EC8F00DF59A3 /* SwiftAPApp.swift */,
-				E0E05FCE2C77EC8F00DF59A3 /* ContentView.swift */,
 				E0E05FD02C77EC9000DF59A3 /* Assets.xcassets */,
 				E0E05FD22C77EC9000DF59A3 /* SwiftAP.entitlements */,
 				E0E05FD32C77EC9000DF59A3 /* Preview Content */,
-				E02CC5D52C7855D800F2EFF0 /* ActivityView.swift */,
-				E02CC5D72C786E5B00F2EFF0 /* TableView.swift */,
-				E02CC5D92C786F7900F2EFF0 /* MoreView.swift */,
-				E09B0F712C7F0F5800C75589 /* TableElements.swift */,
-				E09B0F732C7F108E00C75589 /* TableModel.swift */,
-				E0C2AA712C88E6B100372EA9 /* CourseModel.swift */,
+				E0E05FCC2C77EC8F00DF59A3 /* SwiftAPApp.swift */,
+				E01499942DFDFA7400080EE1 /* MainTabView.swift */,
+				E0B62E0F2DFEC19D0040D19F /* Pages */,
+				E0B62E0D2DFEC1830040D19F /* Authenticate */,
 			);
 			path = SwiftAP;
 			sourceTree = "<group>";
@@ -203,6 +192,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E0B62E0D2DFEC1830040D19F /* Authenticate */,
+				E0B62E0F2DFEC19D0040D19F /* Pages */,
 			);
 			name = SwiftAP;
 			productName = SwiftAP;
@@ -256,7 +249,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					E0E05FC82C77EC8F00DF59A3 = {
 						CreatedOnToolsVersion = 15.4;
@@ -370,9 +363,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftAP-SwiftAPUITests/Pods-SwiftAP-SwiftAPUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftAP-SwiftAPUITests/Pods-SwiftAP-SwiftAPUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -409,9 +406,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftAP/Pods-SwiftAP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftAP/Pods-SwiftAP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -425,14 +426,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E05FCF2C77EC8F00DF59A3 /* ContentView.swift in Sources */,
-				E02CC5DA2C786F7900F2EFF0 /* MoreView.swift in Sources */,
-				E02CC5D62C7855D800F2EFF0 /* ActivityView.swift in Sources */,
+				E01499952DFDFA7400080EE1 /* MainTabView.swift in Sources */,
 				E0E05FCD2C77EC8F00DF59A3 /* SwiftAPApp.swift in Sources */,
-				E09B0F742C7F108E00C75589 /* TableModel.swift in Sources */,
-				E02CC5D82C786E5B00F2EFF0 /* TableView.swift in Sources */,
-				E0C2AA722C88E6B100372EA9 /* CourseModel.swift in Sources */,
-				E09B0F722C7F0F5800C75589 /* TableElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +500,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = LYBD548XQ2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -567,6 +563,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LYBD548XQ2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -597,7 +594,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftAP/Preview Content\"";
-				DEVELOPMENT_TEAM = LYBD548XQ2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -611,7 +607,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"$(inherited)",
@@ -644,7 +640,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftAP/Preview Content\"";
-				DEVELOPMENT_TEAM = LYBD548XQ2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -658,7 +653,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"$(inherited)",
@@ -683,12 +678,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6EA5961F0C649E24D88BF363 /* Pods-SwiftAPTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = LYBD548XQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -708,12 +701,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 715DB4CC68ACBC183824A3FA /* Pods-SwiftAPTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = LYBD548XQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -733,11 +724,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 222D7E3075FB93F9E5A17858 /* Pods-SwiftAP-SwiftAPUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = LYBD548XQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -757,11 +746,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 820309C01DCAF5729F869C43 /* Pods-SwiftAP-SwiftAPUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = LYBD548XQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
