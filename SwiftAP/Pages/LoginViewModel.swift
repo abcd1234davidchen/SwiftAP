@@ -1,5 +1,4 @@
 import Foundation
-import CryptoKit
 
 @MainActor
 class LoginViewModel: ObservableObject {
@@ -14,12 +13,6 @@ class LoginViewModel: ObservableObject {
     func login(completion: @escaping(Bool) -> Void) {
         showProgressVIew = true
         error = nil
-        let passwordData = credentials.password.data(using: .utf8) ?? Data()
-        let md5 = Insecure.MD5.hash(data: passwordData)
-        let md5Data = Data(md5)
-        let base64md5 = md5Data.base64EncodedString()
-        credentials.password = base64md5
-        print("MD5 Encoded Password: \(base64md5)")
         
         Task {
             do {

@@ -1,5 +1,6 @@
 import SwiftUI
 import Network
+import SwiftData
 
 @main
 struct SwiftAPApp: App {
@@ -12,6 +13,7 @@ struct SwiftAPApp: App {
             if auth.isValidated {
                 MainTabView()
                     .environmentObject(auth)
+                    
             }
             else if !triedAutoLogin {
                 Color.clear.onAppear {
@@ -45,6 +47,6 @@ struct SwiftAPApp: App {
                 LoginView()
                     .environmentObject(auth)
             }
-        }
+        }.modelContainer(for: [DataItem.self, AppInfo.self])
     }
 }
