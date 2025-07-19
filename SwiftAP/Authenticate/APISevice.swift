@@ -10,6 +10,8 @@ class APIService {
         let configuration = URLSessionConfiguration.default
         configuration.httpCookieStorage = HTTPCookieStorage.shared
         configuration.httpShouldSetCookies = true
+        configuration.urlCache = URLCache.shared
+        configuration.requestCachePolicy = .useProtocolCachePolicy
         self.session = URLSession(configuration: configuration)
     }
     
@@ -85,6 +87,7 @@ class APIService {
         ]
         let bodyString = body.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
         request.httpBody = bodyString.data(using: .utf8)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
 
         session.dataTask(with: request) { data, response, error in
             if error != nil {
@@ -96,13 +99,19 @@ class APIService {
                 (200...299).contains(httpResponse.statusCode),
                 let data = data
             else {
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("Invalid response: status code = \(httpResponse.statusCode)")
+                } else {
+                    print("Invalid response: response = \(String(describing: response))")
+                }
                 DispatchQueue.main.async {completion(.failure(.invalidResponse))}
                 return
             }
             
             if let htmlString = String(data: data, encoding: .utf8) {
                 do{
-                    if htmlString.contains("請重新登入") {
+                    if htmlString.contains("請重新登入")||htmlString.contains("請輸入學生學號") {
+                        print("Login expired or invalid credentials (HTML): \(htmlString)")
                         DispatchQueue.main.async {
                             completion(.failure(.timeout))
                         }
@@ -114,7 +123,11 @@ class APIService {
                         for (index,row) in rows.enumerated() {
                             if index == 0 { continue }
                             let cells = try row.getElementsByTag("td")
-                            let course = DataItem(code: try cells[2].text(), name: try cells[4].text(),professor: try cells[8].text(),credit: try cells[5].text(), room: try cells[9].text(), monday: try cells[10].text(), tuesday: try cells[11].text(), wednesday: try cells[12].text(), thursday: try cells[12].text(), friday: try cells[13].text(), saturday: try cells[14].text(), sunday: try cells[15].text())
+                            let course = DataItem(code: try cells[2].text(), name: try cells[4].text(),
+                            professor: try cells[8].text(),credit: try cells[5].text(), 
+                            room: try cells[9].text(), monday: try cells[10].text(), tuesday: try cells[11].text(),
+                            wednesday: try cells[12].text(), thursday: try cells[13].text(), 
+                            friday: try cells[14].text(), saturday: try cells[15].text(), sunday: try cells[16].text())
                             courses.append(course)
                         }
 
