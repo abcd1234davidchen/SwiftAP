@@ -16,9 +16,11 @@ class DataItem: Identifiable {
     var friday: String
     var saturday: String
     var sunday: String
+    var colorHex: String
+    var englishName: String
     init(code: String, name: String, professor: String, credit: String, room: String,
          monday: String, tuesday: String, wednesday: String, thursday: String,
-         friday: String, saturday: String, sunday: String) {
+         friday: String, saturday: String, sunday: String, colorHex: String, englishName: String) {
         self.code = code
         self.name = name
         self.room = room
@@ -31,6 +33,8 @@ class DataItem: Identifiable {
         self.sunday = sunday
         self.professor = professor
         self.credit = credit
+        self.colorHex = colorHex
+        self.englishName = englishName
     }
 }
 

@@ -123,11 +123,23 @@ class APIService {
                         for (index,row) in rows.enumerated() {
                             if index == 0 { continue }
                             let cells = try row.getElementsByTag("td")
-                            let course = DataItem(code: try cells[2].text(), name: try cells[4].text(),
-                            professor: try cells[8].text(),credit: try cells[5].text(), 
+
+                            let nameHtml = try cells[4].html()
+                            let nameParts = try nameHtml
+                                .replacingOccurrences(of: "<br />", with: "<br>")
+                                .replacingOccurrences(of: "<br/>", with: "<br>")
+                                .components(separatedBy: "<br>")
+                                .map {try SwiftSoup.parse($0).text().trimmingCharacters(in: .whitespacesAndNewlines) }
+                                .filter { !$0.isEmpty }
+                            let chineseName = nameParts.first ?? ""
+                            let englishName = nameParts.count > 1 ? nameParts[1] : ""
+
+                            let course = DataItem(code: try cells[2].text(), name: chineseName,
+                            professor: try cells[8].text(),credit: try cells[5].text(),
                             room: try cells[9].text(), monday: try cells[10].text(), tuesday: try cells[11].text(),
                             wednesday: try cells[12].text(), thursday: try cells[13].text(), 
-                            friday: try cells[14].text(), saturday: try cells[15].text(), sunday: try cells[16].text())
+                            friday: try cells[14].text(), saturday: try cells[15].text(), sunday: try cells[16].text(),
+                            colorHex: "#FFFFFF", englishName: englishName)
                             courses.append(course)
                         }
 

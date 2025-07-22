@@ -3,23 +3,29 @@ import SwiftData
 
 struct YouView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @StateObject private var youVM = YouViewModel()
     @Query var courses: [DataItem]
 
+    func courseString(course: DataItem) -> String {
+        let weekday = Calendar.current.component(.weekday, from: Date())
+        var str = ""
+        switch weekday {
+            case 1: str = course.sunday
+            case 2: str = course.monday
+            case 3: str = course.tuesday
+            case 4: str = course.wednesday
+            case 5: str = course.thursday
+            case 6: str = course.friday
+            case 7: str = course.saturday
+            default: str = ""
+        }
+        return str
+    }
+    
     var todayCourses: [DataItem] {
         courses.filter { course in
-            let weekday = Calendar.current.component(.weekday, from: Date())
-            var str = ""
-            switch weekday {
-                case 1: str = course.sunday
-                case 2: str = course.monday
-                case 3: str = course.tuesday
-                case 4: str = course.wednesday
-                case 5: str = course.thursday
-                case 6: str = course.friday
-                case 7: str = course.saturday
-                default: str = ""
-            }
+            let str = courseString(course: course)
             return !str.trimmingCharacters(in: .whitespaces).isEmpty
         }
     }
@@ -31,19 +37,7 @@ struct YouView: View {
                 "A": 7, "1": 8, "2": 9, "3": 10, "4": 11,
                 "B": 12, "5": 13, "6": 14, "7": 15, "8": 16, "9": 17,"C": 23
             ]
-            let weekday = Calendar.current.component(.weekday, from: Date())
-            var str = ""
-            switch weekday {
-                case 1: str = course.sunday
-                case 2: str = course.monday
-                case 3: str = course.tuesday
-                case 4: str = course.wednesday
-                case 5: str = course.thursday
-                case 6: str = course.friday
-                case 7: str = course.saturday
-                default: str = ""
-            }
-            print("string: \(str)")
+            let str = courseString(course: course)
             for (key, hour) in timePeriod {
                 if hour >= time && str.contains(key) {
                     return true
@@ -51,21 +45,79 @@ struct YouView: View {
             }
             return false
         }
-        //TODO: Sort them by time
+    }
+    
+    var sortedCourses: [DataItem] {
+        let timePeriodOrder: [String] = ["A", "1", "2", "3", "4", "B", "5", "6", "7", "8", "9", "C"]
+        var courseWithEarliestPeriod: [(course: DataItem, earliestIndex: Int)] = []
+        var added = Set<String>()
+        for course in upcomingCourses {
+            let str = courseString(course: course)
+            let indices = timePeriodOrder.compactMap { key in
+                str.contains(key) ? timePeriodOrder.firstIndex(of: key) : nil
+            }
+            if let minIndex = indices.min(), !added.contains(course.name) {
+                courseWithEarliestPeriod.append((course, minIndex))
+                added.insert(course.name)
+            }
+        }
+        return courseWithEarliestPeriod.sorted { $0.earliestIndex < $1.earliestIndex }.map { $0.course }
     }
 
     var body: some View {
         NavigationStack(){
             ZStack(content: {
-                ScrollView {
-                    VStack{
-                        ForEach(upcomingCourses){course in
-                            courseDesign(courseName: course.name, classroom: course.room, period: course.sunday, professor: course.professor)
+                Group {
+                    if horizontalSizeClass == .compact {
+                        ScrollView {
+                            VStack{
+                                ForEach(sortedCourses.indices, id: \.self){index in
+                                    let course = sortedCourses[index]
+                                    courseDesign(courseName: course.name, classroom: course.room, period: courseString(course: course), professor: course.professor, index: index)
+                                }
+                            if(sortedCourses.isEmpty){
+                                Image(systemName: "square.3.layers.3d.down.right.slash").font(.system(size: 60))
+                                Text("No Courses").font(.title)
+                            }
+                            }.frame(maxHeight: .infinity, alignment: .topLeading)
+                            Divider().padding()
+                            Text("No Announcements").font(.title)
                         }
-                    }.frame(maxHeight: .infinity, alignment: .top)
+                    }
+                    else{
+                        ScrollView(.horizontal){
+                            HStack {
+                                if(sortedCourses.isEmpty){
+                                    VStack{
+                                        Image(systemName: "square.3.layers.3d.down.right.slash").font(.system(size: 60))
+                                        Text("No Courses").font(.title)
+                                    }.frame(minWidth : 450,alignment: .center)
+                                }
+                                else{
+                                    ScrollView{
+                                        VStack{
+                                            ForEach(sortedCourses.indices, id: \.self){index in
+                                                let course = sortedCourses[index]
+                                                courseDesign(courseName: course.name, classroom: course.room, period: courseString(course: course), professor: course.professor, index: index)
+                                            }
+                                            if(sortedCourses.isEmpty){
+                                                Image(systemName: "square.3.layers.3d.down.right.slash").font(.system(size: 60))
+                                                Text("No Courses").font(.title)
+                                            }
+                                        }.frame(minWidth : 500, maxHeight: .infinity ,alignment: .center)
+                                    }
+                                }
+                                Divider().padding()
+                                VStack{
+                                    Image(systemName: "bell.slash").font(.system(size: 60))
+                                    Text("No Announcements").font(.title)
+                                }.frame(minWidth : 450,alignment: .center)
+                            }
+                        }/*.safeAreaInset(edge: .top) {Spacer().frame(height: 16)}*/
+                    }
                 }
             })
-            .navigationTitle("Good Day")
+            .navigationTitle("Swift AP")
             .onAppear{
                 youVM.buildYouPage(context: context) { success in
                     print("Fetched courses successfully: \(success)")
@@ -76,46 +128,49 @@ struct YouView: View {
 }
 
 struct courseDesign: View {
-    @State var courseName: String = ""
-    @State var classroom: String = ""
-    @State var period: String = ""
-    @State var professor: String = ""
+    var courseName: String = ""
+    var classroom: String = ""
+    var period: String = ""
+    var professor: String = ""
+    @State var index: Int = 0
     
-    let time = Calendar.current.component(.hour, from: Date())
+    
+    @State private var time = Calendar.current.component(.hour, from: Date())
     let timePeriod: [String: Int] = [
         "A": 7, "1": 8, "2": 9, "3": 10, "4": 11,
-        "B": 12, "5": 13, "6": 14, "7": 15, "8": 16, "9": 17,"C": 23
+        "B": 12, "5": 13, "6": 14, "7": 15, "8": 16, "9": 17
     ]
     
-    
     var isCurrentCourse: Bool {
-        for (key, hour) in timePeriod {
-            if hour == time && period.contains(key) {
-                return true
-            }
-        }
-        return false
+        return index == 0
+    }
+    
+    var periodArr : [String] {
+        return period.map { String($0) }
     }
 
     var body: some View {
         ZStack(alignment: .leading){
-            RoundedRectangle(cornerRadius: 20.0,style: .continuous).fill(Color.blue.opacity(0.4)).frame(height: isCurrentCourse ? 240 : 120).animation(.easeInOut, value: isCurrentCourse)
+            RoundedRectangle(cornerRadius: 20.0,style: .continuous).fill(Color.blue.opacity(0.15)).frame(height: isCurrentCourse ? 150 : 120).animation(.easeInOut, value: isCurrentCourse)
             HStack(alignment: .center, spacing: 10) {
                 VStack(alignment: .leading){
-                    //TODO: dynamic dots and color change
-                    Circle().fill(Color.blue).frame(width: 10, height: 10)
-                    Circle().fill(Color.blue).frame(width: 10, height: 10)
-                    Circle().fill(Color.blue).frame(width: 10, height: 10)
-                    Capsule().fill(Color.blue).frame(width: 10, height: 30)
+                    ForEach(periodArr, id: \.self){periodTime in
+                        let active = timePeriod[periodTime]==time && isCurrentCourse
+                        Capsule().fill(Color.blue).frame(width: 10, height: active ? 60 : 10)
+                    }
                 }
                 VStack(alignment: .leading){
-                    Text(courseName).padding(.vertical, 15)
-                    Text(period)
-                }
-                Spacer(minLength: 0.0)
-                VStack(alignment: .trailing){
-                    Text(classroom)
-                    Text(professor)
+                    Text(courseName)
+                        .font(isCurrentCourse ? (courseName.count > 40 ? .title : .largeTitle) : (courseName.count > 18 ? .title3 : .title))
+                        .frame(height: isCurrentCourse ? 90 : 60)
+                    HStack(alignment: .bottom){
+                        Text(period).font(.title3)
+                        Spacer(minLength: 0.0)
+                        VStack(alignment: .trailing){
+                            Text(classroom).font(.callout)
+                            Text(professor).font(.callout)
+                        }
+                    }
                 }
             }.padding(.horizontal)
         }.padding(.horizontal)
@@ -136,5 +191,6 @@ struct courseDesign: View {
 }
 
 #Preview{
-    courseDesign(courseName: "Test", classroom: "Room", period: "A12", professor: "Damn")
+    courseDesign(courseName: "Really Long Course that requires multiple", classroom: "三5,6,7(工EC 1005)", period: "A1234", professor: "五個字最長", index: 0)
+    courseDesign(courseName: "PYTHON AND MACHINE LEARNING ALGORITHMS", classroom: "三5,6,7(工EC 1005)", period: "A1234", professor: "五個字最長", index: 1)
 }

@@ -17,20 +17,20 @@ class YouViewModel: ObservableObject {
             print("Skip API call in Preview")
             let fakeCourses = [
                 DataItem(code: "TEST001", name: "Test Course1", professor: "Test Professor", 
-                credit: "3", room: "Test Room", monday: "123", tuesday: "B", wednesday: "", thursday: ""
-                , friday: "", saturday: "", sunday: "8"),
-                DataItem(code: "TEST002", name: "Test Course2", professor: "Test Professor", 
-                credit: "3", room: "Test Room", monday: "", tuesday: "123", wednesday: "", thursday: "", 
-                friday: "", saturday: "", sunday: "A"),
+                credit: "3", room: "Test Room", monday: "123C", tuesday: "A1", wednesday: "", thursday: ""
+                , friday: "", saturday: "", sunday: "A", colorHex: "#FFFFFF", englishName: "T1"),
+                DataItem(code: "TEST002", name: "Test Course2", professor: "Test Professor",
+                credit: "3", room: "Test Room", monday: "", tuesday: "234", wednesday: "", thursday: "",
+                friday: "", saturday: "", sunday: "A", colorHex: "#FFFFFF", englishName: "T1"),
                 DataItem(code: "TEST003", name: "Test Course3", professor: "Test Professor",
-                credit: "3", room: "Test Room", monday: "", tuesday: "", wednesday: "78", thursday: "", 
-                friday: "", saturday: "", sunday: "67"),
+                credit: "3", room: "Test Room", monday: "", tuesday: "567", wednesday: "78", thursday: "",
+                friday: "", saturday: "", sunday: "67", colorHex: "#FFFFFF", englishName: "T1"),
                 DataItem(code: "TEST004", name: "Test Course4", professor: "Test Professor",
-                credit: "3", room: "Test Room", monday: "123", tuesday: "B", wednesday: "", thursday: "", 
-                friday: "", saturday: "789C", sunday: "12"),
+                credit: "3", room: "Test Room", monday: "123", tuesday: "8", wednesday: "", thursday: "",
+                friday: "", saturday: "789C", sunday: "12", colorHex: "#FFFFFF", englishName: "T1"),
                 DataItem(code: "TEST005", name: "Test Course5", professor: "Test Professor",
-                credit: "3", room: "Test Room", monday: "123", tuesday: "B", wednesday: "", thursday: "", 
-                friday: "", saturday: "", sunday: "34")
+                credit: "3", room: "Test Room", monday: "123C", tuesday: "9", wednesday: "", thursday: "", 
+                friday: "", saturday: "", sunday: "34", colorHex: "#FFFFFF", englishName: "T1")
             ]
             let fetchDescriptor = FetchDescriptor<DataItem>()
             let existingCourses = try? context.fetch(fetchDescriptor)

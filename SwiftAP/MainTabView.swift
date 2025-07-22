@@ -11,6 +11,7 @@ struct MainTabView: View {
             BusView().tabItem{Label("Bus",systemImage:"bus")}
             MoreView().tabItem{Label("More",systemImage:"square.grid.2x2.fill")}
         }
+        .tabViewStyle(.sidebarAdaptable)
         .onAppear{
             insertDefaultSettingsIfNeeded()
         }
