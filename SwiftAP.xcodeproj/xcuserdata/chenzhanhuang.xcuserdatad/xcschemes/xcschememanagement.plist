@@ -7,7 +7,25 @@
 		<key>SwiftAP.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E0E05FC82C77EC8F00DF59A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0E05FD92C77EC9000DF59A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0E05FE32C77EC9000DF59A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
