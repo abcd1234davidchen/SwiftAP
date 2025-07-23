@@ -73,7 +73,7 @@ struct YouView: View {
                             VStack{
                                 ForEach(sortedCourses.indices, id: \.self){index in
                                     let course = sortedCourses[index]
-                                    courseDesign(courseName: course.name, classroom: course.room, period: courseString(course: course), professor: course.professor, index: index)
+                                    courseDesign(courseName: course.name, classroom: course.room, period: courseString(course: course), professor: course.professor, colorHex: course.colorHex, index: index)
                                 }
                             if(sortedCourses.isEmpty){
                                 Image(systemName: "square.3.layers.3d.down.right.slash").font(.system(size: 60))
@@ -81,7 +81,10 @@ struct YouView: View {
                             }
                             }.frame(maxHeight: .infinity, alignment: .topLeading)
                             Divider().padding()
-                            Text("No Announcements").font(.title)
+                            VStack{
+                                Image(systemName: "bell.slash").font(.system(size: 60))
+                                Text("No Announcements").font(.title)
+                            }
                         }
                     }
                     else{
@@ -98,7 +101,7 @@ struct YouView: View {
                                         VStack{
                                             ForEach(sortedCourses.indices, id: \.self){index in
                                                 let course = sortedCourses[index]
-                                                courseDesign(courseName: course.name, classroom: course.room, period: courseString(course: course), professor: course.professor, index: index)
+                                                courseDesign(courseName: course.name, classroom: course.room, period: courseString(course: course), professor: course.professor, colorHex: course.colorHex, index: index)
                                             }
                                             if(sortedCourses.isEmpty){
                                                 Image(systemName: "square.3.layers.3d.down.right.slash").font(.system(size: 60))
@@ -113,7 +116,7 @@ struct YouView: View {
                                     Text("No Announcements").font(.title)
                                 }.frame(minWidth : 450,alignment: .center)
                             }
-                        }/*.safeAreaInset(edge: .top) {Spacer().frame(height: 16)}*/
+                        }
                     }
                 }
             })
@@ -132,8 +135,8 @@ struct courseDesign: View {
     var classroom: String = ""
     var period: String = ""
     var professor: String = ""
+    @State var colorHex: String = ""
     @State var index: Int = 0
-    
     
     @State private var time = Calendar.current.component(.hour, from: Date())
     let timePeriod: [String: Int] = [
@@ -148,15 +151,19 @@ struct courseDesign: View {
     var periodArr : [String] {
         return period.map { String($0) }
     }
+    
+    var timeString : String{
+        return "\(timePeriod[periodArr.first ?? "A"] ?? 0):10~\((timePeriod[periodArr.last ?? "A"] ?? 0)+1):00"
+    }
 
     var body: some View {
         ZStack(alignment: .leading){
-            RoundedRectangle(cornerRadius: 20.0,style: .continuous).fill(Color.blue.opacity(0.15)).frame(height: isCurrentCourse ? 150 : 120).animation(.easeInOut, value: isCurrentCourse)
+            RoundedRectangle(cornerRadius: 20.0,style: .continuous).fill(hexStringToColor(hex: colorHex, opacity: 0.3)).frame(height: isCurrentCourse ? 150 : 120).animation(.easeInOut, value: isCurrentCourse)
             HStack(alignment: .center, spacing: 10) {
                 VStack(alignment: .leading){
                     ForEach(periodArr, id: \.self){periodTime in
                         let active = timePeriod[periodTime]==time && isCurrentCourse
-                        Capsule().fill(Color.blue).frame(width: 10, height: active ? 60 : 10)
+                        Capsule().fill(hexStringToColor(hex: colorHex)).frame(width: 10, height: active ? 60 : 10)
                     }
                 }
                 VStack(alignment: .leading){
@@ -164,7 +171,7 @@ struct courseDesign: View {
                         .font(isCurrentCourse ? (courseName.count > 40 ? .title : .largeTitle) : (courseName.count > 18 ? .title3 : .title))
                         .frame(height: isCurrentCourse ? 90 : 60)
                     HStack(alignment: .bottom){
-                        Text(period).font(.title3)
+                        Text(timeString).font(.title3)
                         Spacer(minLength: 0.0)
                         VStack(alignment: .trailing){
                             Text(classroom).font(.callout)
@@ -190,7 +197,25 @@ struct courseDesign: View {
     }
 }
 
-#Preview{
-    courseDesign(courseName: "Really Long Course that requires multiple", classroom: "三5,6,7(工EC 1005)", period: "A1234", professor: "五個字最長", index: 0)
-    courseDesign(courseName: "PYTHON AND MACHINE LEARNING ALGORITHMS", classroom: "三5,6,7(工EC 1005)", period: "A1234", professor: "五個字最長", index: 1)
+#Preview {
+    ScrollView(showsIndicators: false){
+        ForEach(colorHexList, id: \.self) { colorHex in
+            courseDesign(courseName: "PYTHON AND MACHINE LEARNING ALGORITHMS".capitalized, classroom: "三5,6,7(工EC 1005)", period: "A1234", professor: "教授名字可以不要太長嗎",colorHex: colorHex, index: 0)
+            courseDesign(courseName: "PYTHON AND MACHINE LEARNING ALGORITHMS".capitalized, classroom: "三5,6,7(工EC 1005)", period: "A1234", professor: "教授名字可以不要太長嗎",colorHex: colorHex, index: 1)
+        }
+    }
+}
+
+#Preview {
+    let columns = Array(repeating: GridItem(), count: 4)
+    ScrollView{
+        LazyVGrid(columns:columns){
+            ForEach(colorHexList, id: \.self) { colorHex in
+                ZStack{
+                    RoundedRectangle(cornerRadius: 20.0,style: .continuous).fill(hexStringToColor(hex: colorHex, opacity: 0.3)).frame(height:120)
+                    Circle().fill(hexStringToColor(hex: colorHex, opacity: 1)).frame(width: 10, height: 10)
+                }.padding(.horizontal)
+            }
+        }
+    }
 }

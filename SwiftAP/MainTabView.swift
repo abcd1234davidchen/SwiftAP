@@ -20,7 +20,7 @@ struct MainTabView: View {
         let fetchDescriptor = FetchDescriptor<AppInfo>()
         let settings = try? context.fetch(fetchDescriptor)
         if settings?.isEmpty ?? true {
-            let defaultSetting = AppInfo(id: UUID().uuidString, yearSemester: "1132", userName: "")
+            let defaultSetting = AppInfo(id: UUID().uuidString, yearSemester: "1132", userName: "", availableSemesters: "1131,1132")
             context.insert(defaultSetting)
         }
     }

@@ -139,7 +139,7 @@ class APIService {
                             room: try cells[9].text(), monday: try cells[10].text(), tuesday: try cells[11].text(),
                             wednesday: try cells[12].text(), thursday: try cells[13].text(), 
                             friday: try cells[14].text(), saturday: try cells[15].text(), sunday: try cells[16].text(),
-                            colorHex: "#FFFFFF", englishName: englishName)
+                                                  colorHex: "", englishName: englishName.capitalized, grade: "")
                             courses.append(course)
                         }
 
