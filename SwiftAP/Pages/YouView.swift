@@ -170,13 +170,14 @@ struct courseDesign: View {
                     Text(courseName)
                         .font(isCurrentCourse ? (courseName.count > 40 ? .title : .largeTitle) : (courseName.count > 18 ? .title3 : .title))
                         .frame(height: isCurrentCourse ? 90 : 60)
+                    HStack{
+                        Spacer(minLength: 0.0)
+                        Text(classroom).font(.callout)
+                    }
                     HStack(alignment: .bottom){
                         Text(timeString).font(.title3)
                         Spacer(minLength: 0.0)
-                        VStack(alignment: .trailing){
-                            Text(classroom).font(.callout)
-                            Text(professor).font(.callout)
-                        }
+                        Text(professor).font(.callout)
                     }
                 }
             }.padding(.horizontal)

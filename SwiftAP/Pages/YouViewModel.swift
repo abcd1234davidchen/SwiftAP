@@ -16,19 +16,19 @@ class YouViewModel: ObservableObject {
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
             print("Skip API call in Preview")
             let fakeCourses = [
-                DataItem(code: "TEST001", name: "Test Course1", professor: "Test Professor", 
+                DataItem(code: "TEST001", name: "Test Course 1", professor: "Test Professor",
                         credit: "3", room: "Test Room", monday: "A1", tuesday: "34", wednesday: "B567", thursday: "A1",
                         friday: "234", saturday: "", sunday: "A", colorHex: colorHexList[0], englishName: "T1", grade:""),
-                DataItem(code: "TEST002", name: "Test Course2", professor: "Test Professor",
+                DataItem(code: "TEST002", name: "Test Course 2", professor: "Test Professor",
                         credit: "3", room: "Test Room", monday: "67", tuesday: "", wednesday: "", thursday: "4B5",
                         friday: "", saturday: "", sunday: "A", colorHex: colorHexList[1], englishName: "T1", grade:""),
-                DataItem(code: "TEST003", name: "Test Course3", professor: "Test Professor",
+                DataItem(code: "TEST003", name: "Test Course 3", professor: "Test Professor",
                         credit: "3", room: "Test Room", monday: "B", tuesday: "12", wednesday: "A12", thursday: "789",
                         friday: "", saturday: "", sunday: "67", colorHex: colorHexList[2], englishName: "T1", grade:""),
-                DataItem(code: "TEST004", name: "Test Course4", professor: "Test Professor",
+                DataItem(code: "TEST004", name: "Test Course 4", professor: "Test Professor",
                         credit: "3", room: "Test Room", monday: "23", tuesday: "", wednesday: "3", thursday: "",
                         friday: "567", saturday: "", sunday: "12", colorHex: colorHexList[3], englishName: "T1", grade:""),
-                DataItem(code: "TEST005", name: "Test Course5", professor: "Test Professor",
+                DataItem(code: "TEST005", name: "Test Course 5", professor: "Test Professor",
                         credit: "3", room: "Test Room", monday: "9", tuesday: "", wednesday: "89", thursday: "",
                         friday: "", saturday: "678", sunday: "34", colorHex: colorHexList[4], englishName: "T1", grade:"")
             ]
@@ -87,7 +87,6 @@ class YouViewModel: ObservableObject {
                         existing.saturday = course.saturday
                         existing.sunday = course.sunday
                         existing.englishName = course.englishName
-                        existing.colorHex = course.colorHex
                         existing.grade = course.grade
                     } else {
                         course.colorHex = course.colorHex.isEmpty ? colorHexList[index % colorHexList.count] : course.colorHex
